@@ -4,12 +4,16 @@ export interface IToken {
   expiresAt: string;
 }
 
-export interface ITokenResponse{
-  messsage: string;
-  token:IToken
+export interface IGenericResponse{
+  message: string;
+  token: IToken;
 }
-
+export interface IDataResponse{
+  data:IGenericResponse
+}
 export interface ILoginParams {
   user: string;
   pass: string;
 }
+
+

@@ -1,4 +1,6 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import { Action, configureStore } from "@reduxjs/toolkit";
+import type { ThunkAction } from 'redux-thunk';
+
 import {
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,
@@ -14,6 +16,7 @@ import {
   persistStore,
 } from 'redux-persist';
 import { rootReducer } from "./root-reducer";
+import { loginApi } from '../slices/authentication/login-api';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -23,7 +26,8 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     })
-      .concat()
+    .concat(loginApi.middleware)
+  
 })
 
 export const persistor = persistStore(store);
@@ -33,6 +37,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
+
 
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
