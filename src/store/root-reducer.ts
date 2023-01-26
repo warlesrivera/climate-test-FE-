@@ -3,6 +3,8 @@ import sessionStorage from 'redux-persist/lib/storage/session';
 import { slicesNamesConstants } from "../common/constants/slices-names-constants";
 import { loginSlice } from "../slices";
 import { loginApi } from "../slices/authentication/login-api";
+import alertInfoReducer from '../slices/alert-info-slice';
+import loadingModalReducer from '../slices/loading-modal-slice';
 
 
 const loginConfig = {
@@ -10,7 +12,10 @@ const loginConfig = {
   storage: sessionStorage,
 };
 export const rootReducer = combineReducers({
-  loginUser: loginSlice.reducer, 
+  loginUser: loginSlice.reducer,
+  alertInfo: alertInfoReducer,
+  loadingModal: loadingModalReducer,
+  
   [loginApi.reducerPath]: loginApi.reducer,
   
   

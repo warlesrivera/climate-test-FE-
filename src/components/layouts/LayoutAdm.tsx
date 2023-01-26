@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import React, { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { clearError, selectErrorState } from '../../slices/alert-info-slice';
+import { selectLoadingModal } from '../../slices/loading-modal-slice';
 import { Navbar, SideMenu } from '../ui';
+import LoadingModal from '../ui/loading-modal';
+import SnackbarInfo from '../ui/snackbar-info';
 
 interface Props {
     title: string;
@@ -9,6 +14,25 @@ interface Props {
     children: React.ReactNode
 }
 export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+
+    const dispatch = useDispatch();
+    const { message, isActive, alertType } = useSelector(selectErrorState);
+    const {
+        isLoading,
+        isSuccess,
+        description: loadingModalDescription,
+      } = useSelector(selectLoadingModal);
+    
+    
+    const onCloseErrorSnackbar = (
+        event?: Event | React.SyntheticEvent,
+        reason?: string
+      ) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        dispatch(clearError());
+    };
     return (
         <>
             <Head>
@@ -23,7 +47,7 @@ export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFu
                 }
             </Head>
             <nav>
-               <Navbar/>
+                <Navbar />
             </nav>
             <SideMenu />
             <main style={{
@@ -31,6 +55,18 @@ export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFu
                 maxWidth: '1440px',
                 padding: '0px 30px'
             }}>
+                <SnackbarInfo
+                    title={message}
+                    open={isActive}
+                    alertType={alertType}
+                    onClose={onCloseErrorSnackbar}
+                />
+
+                <LoadingModal
+                    isLoading={isLoading}
+                    isSuccess={isSuccess}
+                    description={loadingModalDescription}
+                />
                 {children}
             </main>
             <footer>

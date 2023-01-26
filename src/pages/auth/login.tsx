@@ -6,6 +6,9 @@ import UseLogin from '../../hooks/use-login';
 import { validations } from '../../utils';
 import { AuthLayout } from '../../components/layouts'
 import { ErrorOutline } from '@mui/icons-material';
+import { useSnackbarApi } from '../../hooks/api-error-handling/use-snackbar-api';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { useIsLoadingModal } from '../../hooks/use-is-loading-modal';
 
 type FormData = {
     email: string,
@@ -22,16 +25,21 @@ const LoginPage = () => {
 
     /*Custom hook to call the save action  */
 
-    const { login,showError } = UseLogin();
+    const { login,showError,isLoginError,loginError,isLoginLoading } = UseLogin();
 
     /* function login user */
     const onLoginUser = async ({ email, password }: FormData) => {
 
         const isValidLogin = await login({ user: email, pass: password });
-        console.log(isValidLogin)
 
     }
+    useIsLoadingModal(isLoginLoading, false, 'verified data...');
 
+    useSnackbarApi(
+        isLoginError,
+        loginError as FetchBaseQueryError,
+        'Error in authentication'
+      );
     
     return (
         <AuthLayout title={'Login'}>
