@@ -3,10 +3,18 @@ import { SearchOutlined} from "@mui/icons-material"
 import MapIcon from '@mui/icons-material/Map';
 import HistoryIcon from '@mui/icons-material/History';
 import GroupIcon from '@mui/icons-material/Group';
+import { UiContext } from "../../context";
+import { useContext } from "react";
 export const SideMenu = () => {
+
+    const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+    
+    const navigateTo = ( ) => {
+        toggleSideMenu();
+    }
     return (
         <Drawer
-            open={false}
+            open={isMenuOpen}
             anchor='right'
             sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
         >
@@ -30,7 +38,7 @@ export const SideMenu = () => {
                         />
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem button onClick={ () => navigateTo() }>
                         <ListItemIcon>
                             <MapIcon />
                         </ListItemIcon>
@@ -49,7 +57,7 @@ export const SideMenu = () => {
                     <Divider />
                     <ListSubheader>Admin Panel</ListSubheader>
 
-                    <ListItem button>
+                    <ListItem button onClick={ () => navigateTo() }>
                         <ListItemIcon>
                             <GroupIcon />
                         </ListItemIcon>

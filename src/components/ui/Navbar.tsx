@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import NextLink from 'next/link';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
+import { UiContext } from '../../context';
 
 export const Navbar = () => {
+    const { toggleSideMenu } = useContext( UiContext );
     return (
         <AppBar>
             <Toolbar>
@@ -30,7 +32,7 @@ export const Navbar = () => {
                 </Box>
                 <Box flex={1} ></Box>
 
-                <Button>
+                <Button onClick={ toggleSideMenu }>
                     Menú
                 </Button>
             </Toolbar>
