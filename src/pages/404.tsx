@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material';
-import { LayoutAdm } from "../components/layouts";
+import { AuthLayout } from "../components/layouts";
 
 const Custom404 = () => {
     return (
-        <LayoutAdm title='Page not found' pageDescription='There is nothing to show here'>
+        <AuthLayout title='Page not found' >
             <Box
                 display='flex'
                 justifyContent='center'
@@ -14,7 +14,7 @@ const Custom404 = () => {
                 <Typography variant='h1' component='h1' fontSize={80} fontWeight={200}>404 |</Typography>
                 <Typography marginLeft={2}>We did not find any page here</Typography>
             </Box>
-        </LayoutAdm>
+        </AuthLayout>
     )
 }
 

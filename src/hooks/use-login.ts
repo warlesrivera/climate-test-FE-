@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useLoginMutation } from "../slices/authentication/login-api";
 import { useMounted } from './use-mounted';
 
 const UseLogin = () => {
     const isMounted = useMounted();
+    const router = useRouter();
+    const [showError, setShowError] = useState(false);
 
     const [
         login,
@@ -19,17 +22,26 @@ const UseLogin = () => {
 
     useEffect(() => {
         if (isLoginSuccess && LoginResponse !== undefined) {
-            console.log(LoginResponse)
             localStorage.setItem('accessToken', LoginResponse.token.accessToken);
            
             if (isMounted()) {
-                //redirect
+                router.replace('/home');
             }
         }
     }, [isLoginSuccess]);
 
+    useEffect(() => {
+        console.log(isLoginError, 'password');
 
-    return { login, loginError, isLoginError, isLoginLoading, LoginResponse, isLoginSuccess };
+        if (isLoginError) {
+            setShowError(true);
+            setTimeout(() => setShowError(false), 3000);
+            return;
+        }
+    }, [isLoginError]);
+
+
+    return { login, loginError, isLoginError, isLoginLoading, LoginResponse, isLoginSuccess,showError };
 
 }
 
