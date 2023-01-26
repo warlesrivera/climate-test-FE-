@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <LayoutAdm title={''} pageDescription={''} >
+    <LayoutAdm title={'America humidity'} pageDescription={'discover the humidity of each state'} >
 
       <Typography variant='h1' component='h1'>American humidity</Typography>
       <Typography variant='h2' sx={{ mb: 1 }}>discover the humidity of each state</Typography>

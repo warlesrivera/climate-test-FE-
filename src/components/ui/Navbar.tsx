@@ -8,8 +8,8 @@ export const Navbar = () => {
             <Toolbar>
                 <NextLink href='/category/men' passHref legacyBehavior>
                     <Link display='flex' alignItems='center'>
-                        <Typography variant='h6'>American |</Typography>
-                        <Typography sx={{ ml: 0.5 }}>humidity</Typography>
+                        <Typography variant='h6' color='blue'>American |</Typography>
+                        <Typography sx={{ ml: 0.5 }} color='red'>humidity</Typography>
                     </Link>
                 </NextLink>
 
