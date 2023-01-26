@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React, { FC } from 'react'
+import { Navbar, SideMenu } from '../ui';
 
 interface Props {
     title: string;
@@ -7,7 +8,7 @@ interface Props {
     imageFullUrl?: string;
     children: React.ReactNode
 }
-export const Layout: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
     return (
         <>
             <Head>
@@ -22,9 +23,9 @@ export const Layout: FC<Props> = ({ children, title, pageDescription, imageFullU
                 }
             </Head>
             <nav>
-                {/* TODO: Navbar */}
+               <Navbar/>
             </nav>
-            {/* TODO: Sidebar */}
+            <SideMenu />
             <main style={{
                 margin: '80px auto',
                 maxWidth: '1440px',
