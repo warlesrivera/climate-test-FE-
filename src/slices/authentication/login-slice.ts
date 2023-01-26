@@ -24,12 +24,10 @@ export const loginSlice = createSlice({
             
 
         },
-        isLoading: (state, action: PayloadAction<boolean>) => {
-
-        },
         logout: () => initialState,
     },
 });
 
+export const selectToken = (state: RootState): string => state.loginUser.token.accessToken;
 
-export const { logout, login, setToken, isLoading } = loginSlice.actions;
+export const { logout, login, setToken } = loginSlice.actions;

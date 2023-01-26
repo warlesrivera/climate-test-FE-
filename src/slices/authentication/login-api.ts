@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithAuthorization } from '../base-query-authorization';
-import { ILoginParams, IDataResponse } from '../../types';
+import { ILoginParams, IDataResponse, IGenericResponse } from '../../types';
 import { baseUrlApiRoutes } from '../base-url-api-routes';
 import { setToken } from './login-slice';
 
@@ -11,7 +11,7 @@ export const loginApi = createApi({
     }),
     endpoints(builder) {
         return {
-            login: builder.mutation<IDataResponse, ILoginParams>({
+            login: builder.mutation<IGenericResponse, ILoginParams>({
                 query: (loginParams) => {
                     return {
                         url: `/login`,
@@ -22,11 +22,14 @@ export const loginApi = createApi({
                         },
                     };
                 },
+                transformResponse: (response: { data: IGenericResponse; }) =>(response.data),
                 async onQueryStarted(args, { dispatch, queryFulfilled }) {
                     try {
                         const { data } = await queryFulfilled;
-                        dispatch(setToken(data.data))
-                                                
+
+                        console.log(data,'api')
+                        dispatch(setToken(data));
+
                     } catch (error) { }
                 },
 
