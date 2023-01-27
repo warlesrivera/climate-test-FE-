@@ -17,6 +17,7 @@ import {
 } from 'redux-persist';
 import { rootReducer } from "./root-reducer";
 import { loginApi } from '../slices/authentication/login-api';
+import { mapApi } from '../slices/map/map-api';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -27,6 +28,7 @@ export const store = configureStore({
       },
     })
     .concat(loginApi.middleware)
+    .concat(mapApi.middleware)
   
 })
 

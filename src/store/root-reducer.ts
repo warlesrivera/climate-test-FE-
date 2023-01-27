@@ -5,6 +5,7 @@ import { loginSlice } from "../slices";
 import { loginApi } from "../slices/authentication/login-api";
 import alertInfoReducer from '../slices/alert-info-slice';
 import loadingModalReducer from '../slices/loading-modal-slice';
+import { mapApi } from "../slices/map/map-api";
 
 
 const loginConfig = {
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers({
   alertInfo: alertInfoReducer,
   loadingModal: loadingModalReducer,
   
-  [loginApi.reducerPath]: loginApi.reducer,
+  [loginApi.reducerPath]  : loginApi.reducer,
+  [mapApi.reducerPath]    : mapApi.reducer,
   
   
   });
