@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react'
 import NextLink from 'next/link';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
-import { UiContext } from '../../context';
 
 
 interface Props { 
     useStateDrawer:React.Dispatch<React.SetStateAction<boolean>>
 }
 export const Navbar = ({ useStateDrawer}:Props) => {
-    const { toggleSideMenu } = useContext(UiContext);
     
     return (
         <AppBar>

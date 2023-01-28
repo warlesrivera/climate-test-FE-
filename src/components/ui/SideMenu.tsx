@@ -3,7 +3,6 @@ import { SearchOutlined} from "@mui/icons-material"
 import MapIcon from '@mui/icons-material/Map';
 import HistoryIcon from '@mui/icons-material/History';
 import GroupIcon from '@mui/icons-material/Group';
-import { UiContext } from "../../context";
 import { useContext } from "react";
 
 interface Props{
@@ -13,8 +12,6 @@ interface Props{
 
 }
 export const SideMenu = ({stateDrawer,useStateDrawer,toggleDrawer}:Props) => {
-
-    const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
     
     const navigateTo = ( ) => {
         useStateDrawer(false);
