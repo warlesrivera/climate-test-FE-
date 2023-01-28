@@ -1,11 +1,12 @@
-import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
-import { SearchOutlined } from "@mui/icons-material"
+import { Box,  Drawer, List, ListItem, ListItemIcon, ListItemText } from "@mui/material"
 import MapIcon from '@mui/icons-material/Map';
 import HistoryIcon from '@mui/icons-material/History';
-import GroupIcon from '@mui/icons-material/Group';
-import { useContext } from "react";
-import NextLink from 'next/link';
 
+import NextLink from 'next/link';
+import { useAuth } from "../../hooks/use-auth";
+import { useRouter } from "next/router";
+
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 interface Props {
     stateDrawer: boolean;
     useStateDrawer: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +14,17 @@ interface Props {
 
 }
 export const SideMenu = ({ stateDrawer, useStateDrawer, toggleDrawer }: Props) => {
+    const { logout } = useAuth();
+    const router = useRouter();
 
+    const onLogout = async (): Promise<void> => {
+        try {
+            await logout();
+            router.push('auth/login');
+        } catch (err) {
+            console.error(err);
+        }
+    };
     const navigateTo = () => {
         useStateDrawer(false);
     }
@@ -37,13 +48,19 @@ export const SideMenu = ({ stateDrawer, useStateDrawer, toggleDrawer }: Props) =
                         </ListItem>
                     </NextLink>
                     <NextLink href='/history' passHref legacyBehavior>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <HistoryIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'Mis History'} />
-                    </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <HistoryIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={'Mis History'} />
+                        </ListItem>
                     </NextLink>
+                    <ListItem button onClick={onLogout}>
+                        <ListItemIcon>
+                            <LogoutOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={'Logout'} />
+                    </ListItem>
                 </List>
             </Box>
         </Drawer>

@@ -25,7 +25,7 @@ export const AlertCustomPosition = ({  anchorElAlert, open, placement, onClose, 
       modifiers={[{ name: 'flip', enabled: true }]}
     >
       <Grid container >
-        <Grid xs={8} sx={{ margin: '0px 20px' }}>
+        <Grid xs={8} item sx={{ margin: '0px 20px' }}>
           <Alert
             variant='filled'
             onClose={onClose}

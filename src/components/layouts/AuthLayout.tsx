@@ -13,7 +13,7 @@ interface Props {
 
 }
 
-export const AuthLayout: FC<Props> = ({ children, title }) => {
+ const AuthLayout: FC<Props> = ({ children, title }) => {
     const dispatch = useDispatch();
     const { message, isActive, alertType } = useSelector(selectErrorState);
 
@@ -60,4 +60,5 @@ export const AuthLayout: FC<Props> = ({ children, title }) => {
 
         </>
     )
-}
+ }
+export default AuthLayout;

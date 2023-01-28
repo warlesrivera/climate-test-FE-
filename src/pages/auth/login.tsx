@@ -4,7 +4,7 @@ import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/mater
 import { useForm } from 'react-hook-form';
 import UseLogin from '../../hooks/use-login';
 import { validations } from '../../utils';
-import { AuthLayout } from '../../components/layouts'
+import  AuthLayout  from '../../components/layouts/AuthLayout'
 import { ErrorOutline } from '@mui/icons-material';
 import { useSnackbarApi } from '../../hooks/api-error-handling/use-snackbar-api';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';

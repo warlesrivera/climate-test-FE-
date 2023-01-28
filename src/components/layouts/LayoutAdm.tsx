@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { withAuthGuard } from '../../hocs/with-auth-guard';
 import { clearError, selectErrorState } from '../../slices/alert-info-slice';
 import { selectLoadingModal } from '../../slices/loading-modal-slice';
 import { Navbar, SideMenu } from '../ui';
 import LoadingModal from '../ui/loading-modal';
 import SnackbarInfo from '../ui/snackbar-info';
+import PropTypes from 'prop-types';
+import { useAuth } from '../../hooks/use-auth';
 
 interface Props {
     title: string;
@@ -13,8 +16,9 @@ interface Props {
     imageFullUrl?: string;
     children: React.ReactNode
 }
-export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
-
+ const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFullUrl }) => {
+    const { logout } = useAuth();
+    //logout()
     const [stateDrawer, setDrawerState] = useState(false);
     const toggleDrawer =
         (open: boolean) =>
@@ -89,5 +93,10 @@ export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFu
             </footer>
         </>
     )
-}
+ }
 
+ LayoutAdm.propTypes = {
+    children: PropTypes.node,
+  };
+
+export default withAuthGuard(LayoutAdm)

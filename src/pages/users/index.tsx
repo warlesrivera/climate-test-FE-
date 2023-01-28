@@ -59,7 +59,7 @@ const UserPage = () => {
 
 
         <Grid container>
-            <Grid item xs={12} sx={{ height:650, width: '100%' }}>
+            <Grid  xs={12} sx={{ height:650, width: '100%' }}>
                 <DataGrid 
                     rows={ rows }
                     columns={ columns }

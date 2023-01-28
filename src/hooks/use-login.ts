@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useLoginMutation } from "../slices/authentication/login-api";
 import { useMounted } from './use-mounted';
 import Cookies from 'js-cookie';
+import { useAuth } from "./use-auth";
 
 const UseLogin = () => {
     const isMounted = useMounted();
     const router = useRouter();
     const [showError, setShowError] = useState(false);
+    const { basicLogin } = useAuth();
 
     const [
         login,
@@ -23,8 +25,8 @@ const UseLogin = () => {
 
     useEffect(() => {
         if (isLoginSuccess && LoginResponse !== undefined) {
-            localStorage.setItem('accessToken', LoginResponse.token.accessToken);
-            Cookies.set('accessToken', LoginResponse.token.accessToken );
+            basicLogin(LoginResponse.token.accessToken);
+            
             if (isMounted()) {
                 router.replace('/home');
             }

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/material';
-import { AuthLayout } from '../../components/layouts'
+import  AuthLayout  from '../../components/layouts/AuthLayout'
 import { ErrorOutline } from '@mui/icons-material';
 import { validations } from '../../utils';
 import { useIsLoadingModal } from '../../hooks/use-is-loading-modal';

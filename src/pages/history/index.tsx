@@ -2,7 +2,7 @@
 import { Typography, Grid, Chip, Link, Box } from '@mui/material';
 import { DataGrid, GridColDef, GridColumns } from '@mui/x-data-grid';
 
-import { LayoutAdm } from '../../components/layouts';
+import  LayoutAdm  from '../../components/layouts/LayoutAdm';
 import { selectUser, useHistoryMapQuery } from '../../slices';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';

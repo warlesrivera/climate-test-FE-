@@ -24,11 +24,8 @@ export const loginApi = createApi({
                 },
                 transformResponse: (response: { data: IGenericResponse; }) =>(response.data),
                 async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                    try {
                         const { data } = await queryFulfilled;
                         dispatch(setToken(data));
-
-                    } catch (error) { }
                 },
 
             }),

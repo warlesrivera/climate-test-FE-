@@ -30,7 +30,17 @@ export const loginSlice = createSlice({
 
         },
         logoutUser: (state) => {
-            state = initialState;
+            state.message = '';
+            state.token = {
+                accessToken: '',
+                tokenType: '',
+                expiresAt: '',
+            };
+            state.user = {
+                id: '',
+                name: '',
+                email: '',
+            };
         },
 
     },

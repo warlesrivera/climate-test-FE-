@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import { LayoutAdm } from "../../components/layouts";
+import LayoutAdm from "../../components/layouts/LayoutAdm";
 import { useIsLoadingModal } from "../../hooks/use-is-loading-modal";
 import { useMapQuery } from "../../slices/map/map-api";
 import MapChart from "./mapChart";
@@ -16,9 +16,7 @@ const Map = () => {
       } = useMapQuery();
     
       useIsLoadingModal(isGetMapLoading, false, 'loading...');
-
-      
-
+     
     return (
         <LayoutAdm title={'America humidity'} pageDescription={'discover the humidity of each state'} >
             <Grid container spacing={8} justifyContent='center'>
@@ -30,4 +28,6 @@ const Map = () => {
     );
 }
 
-export default Map
+
+export default Map;
+

@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardMedia, Grid, IconButton, Typography } from '@
 import { NextPage } from 'next';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import UseLogin from '../hooks/use-login';
-import { LayoutAdm } from '../components/layouts';
+import LayoutAdm from '../components/layouts/LayoutAdm';
 
 const Home: NextPage = () => {
 

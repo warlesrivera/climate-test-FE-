@@ -104,7 +104,7 @@ const MapChart: FC<Props> = ({ listMap }) => {
         <>
           {
             listMap ? listMap.map((item) => (
-              <Marker onClick={(e) => (onOpenAlert(e.currentTarget, item.alerts ? item.alerts : null,item.humidity))} coordinates={[+item.city.long, +item.city.lat]}>
+              <Marker key={item.id} onClick={(e) => (onOpenAlert(e.currentTarget, item.alerts ? item.alerts : null,item.humidity))} coordinates={[+item.city.long, +item.city.lat]}>
                 <circle r={8} fill="#F53" />
               </Marker>
 
