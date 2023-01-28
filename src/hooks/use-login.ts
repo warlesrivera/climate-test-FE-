@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useLoginMutation } from "../slices/authentication/login-api";
 import { useMounted } from './use-mounted';
+import Cookies from 'js-cookie';
 
 const UseLogin = () => {
     const isMounted = useMounted();
@@ -23,7 +24,7 @@ const UseLogin = () => {
     useEffect(() => {
         if (isLoginSuccess && LoginResponse !== undefined) {
             localStorage.setItem('accessToken', LoginResponse.token.accessToken);
-           
+            Cookies.set('accessToken', LoginResponse.token.accessToken );
             if (isMounted()) {
                 router.replace('/home');
             }

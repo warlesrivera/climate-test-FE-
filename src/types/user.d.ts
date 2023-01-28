@@ -6,3 +6,10 @@ export interface IUser {
   createdAt?: string;
   updatedAt?: string;
 }
+
+
+export interface IUserParam {
+  name     : string;
+  email    : string;
+  password: string;
+}

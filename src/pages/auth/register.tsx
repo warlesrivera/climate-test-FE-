@@ -6,6 +6,11 @@ import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/mater
 import { AuthLayout } from '../../components/layouts'
 import { ErrorOutline } from '@mui/icons-material';
 import { validations } from '../../utils';
+import { useIsLoadingModal } from '../../hooks/use-is-loading-modal';
+import { useSnackbarApi } from '../../hooks/api-error-handling/use-snackbar-api';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { useMounted } from '../../hooks/use-mounted';
+import UseRegister from '../../hooks/use-register';
 
 
 
@@ -16,28 +21,33 @@ type FormData = {
 };
 
 const RegisterPage = () => {
+    const isMounted = useMounted();
 
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [showError, setShowError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+
+    const { registerUser, registerError, isRegisterError, isRegisterLoading } = UseRegister();
 
     const onRegisterForm = async ({ name, email, password }: FormData) => {
 
         setShowError(false);
-        //const { hasError, message } = await registerUser(name, email, password);
+        await registerUser({name, email, password});
 
-        /* if ( hasError ) {
-            setShowError(true);
-            setErrorMessage( message! );
-            setTimeout(() => setShowError(false), 3000);
-            return;
-        } */
-
-        // Todo: navegar a la pantalla que el usuario estaba
-        router.replace('/');
+        if (isMounted()) {
+           // router.replace('/');
+        }
 
     }
+
+    useIsLoadingModal(isRegisterLoading, false, 'verified data...');
+
+    useSnackbarApi(
+        isRegisterError,
+        registerError as FetchBaseQueryError,
+        'Error in Register'
+    );
+
 
     return (
         <AuthLayout title={'Register'}>
@@ -118,3 +128,7 @@ const RegisterPage = () => {
 }
 
 export default RegisterPage
+
+function useRegisterMutation(): [any, { isSuccess: any; error: any; isError: any; isLoading: any; data: any; }] {
+    throw new Error('Function not implemented.');
+}

@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithAuthorization } from '../base-query-authorization';
-import { ILoginParams, IDataResponse, IGenericResponse } from '../../types';
+import { ILoginParams, IDataResponse, IGenericResponse, IUserParam } from '../../types';
 import { baseUrlApiRoutes } from '../base-url-api-routes';
 import { setToken } from './login-slice';
 
@@ -32,7 +32,16 @@ export const loginApi = createApi({
                 },
 
             }),
-            logoutUser: builder.mutation<void, void>({
+            registerUser: builder.mutation<string, IUserParam>({
+                query: (UserParams) => {
+                    return {
+                        url: `${baseUrlApiRoutes.user}/create`,
+                        method: 'POST',
+                        body:UserParams ,
+                    };
+                },
+            }),
+            logout: builder.mutation<void, void>({
                 query() {
                     return {
                         url: 'logout',
@@ -47,4 +56,6 @@ export const loginApi = createApi({
 
 export const {
     useLoginMutation,
+    useRegisterUserMutation,
+    useLogoutMutation
 } = loginApi;
