@@ -2,13 +2,14 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithAuthorization } from '../base-query-authorization';
 import { baseUrlApiRoutes } from '../base-url-api-routes';
 import { IDataGridMap, IGetMapListResponse, IHistoryParams, IMapData } from '../../types';
+import { HISTORY_MAP, MAP } from '../../common/constants/tags-api-constants';
 
 export const mapApi = createApi({
     reducerPath: 'map',
     baseQuery: baseQueryWithAuthorization({
         baseUrl: baseUrlApiRoutes.map,
     }),
-    tagTypes: ['MapHistory'],
+    tagTypes: [HISTORY_MAP,MAP],
     endpoints(builder) {
         return {
             map: builder.query<IGetMapListResponse, void>({
@@ -18,6 +19,8 @@ export const mapApi = createApi({
                         method: 'GET',
                     };
                 },
+                
+                keepUnusedDataFor: 0,
             }),
             historyMap: builder.query<IDataGridMap, IHistoryParams>({
                 query: (historyParams) => {
@@ -26,7 +29,7 @@ export const mapApi = createApi({
                         method: 'GET',
                     };
                 },
-                providesTags: ['MapHistory'],
+                
                 transformResponse: (response: { data: IGetMapListResponse; }) => {
                     let mapData: IMapData[] = [];
                     response.data.data?.map((item) => {
@@ -51,7 +54,8 @@ export const mapApi = createApi({
                     };
                     return res;
                 },
-                keepUnusedDataFor: 300,
+                keepUnusedDataFor: 0,
+
             }),
         };
     },
