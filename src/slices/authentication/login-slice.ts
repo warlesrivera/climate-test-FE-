@@ -29,7 +29,9 @@ export const loginSlice = createSlice({
             state.user = action.payload.user;
 
         },
-        logout: () => initialState,
+        logoutUser: (state) => {
+            state = initialState;
+        },
 
     },
 });
@@ -37,4 +39,4 @@ export const loginSlice = createSlice({
 export const selectToken = (state: RootState): string => state.loginUser.token.accessToken;
 export const selectUser = (state: RootState): IUser => state.loginUser.user;
 
-export const { logout, login, setToken } = loginSlice.actions;
+export const { logoutUser, login, setToken } = loginSlice.actions;
