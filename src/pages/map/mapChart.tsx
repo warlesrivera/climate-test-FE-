@@ -37,14 +37,14 @@ const MapChart: FC<Props> = ({ listMap }) => {
   const [alert, setAlert] = useState(false);
   const [description, setDescription] = useState<null | React.ReactNode>(null);
 
-  const onOpenAlert = (e: HTMLElement, alert: IAlert[]) => {
+  const onOpenAlert = (e: HTMLElement, alert: IAlert[], humidity:number) => {
     if (alert != undefined) {
       alert.map((item) => {
-        setDescription(<CardInfo title={item.sender_name} description={item.description} start={item.start} end={item.end} />)
+        setDescription(<CardInfo title={item.sender_name} description={item.description} start={item.start} end={item.end} humidity={humidity} />)
       });
     }
     else {
-      setDescription(<CardEmpty />)
+      setDescription(<CardEmpty humidity={humidity} />)
     }
     setAnchorAlert(e);
     setAlert(true);
@@ -54,7 +54,6 @@ const MapChart: FC<Props> = ({ listMap }) => {
     setAnchorAlert(null);
     setAlert(false);
     setDescription(<CardEmpty />);
-
   };
 
   return (
@@ -105,7 +104,7 @@ const MapChart: FC<Props> = ({ listMap }) => {
         <>
           {
             listMap ? listMap.map((item) => (
-              <Marker onClick={(e) => (onOpenAlert(e.currentTarget, item.alerts ? item.alerts : null))} coordinates={[+item.city.long, +item.city.lat]}>
+              <Marker onClick={(e) => (onOpenAlert(e.currentTarget, item.alerts ? item.alerts : null,item.humidity))} coordinates={[+item.city.long, +item.city.lat]}>
                 <circle r={8} fill="#F53" />
               </Marker>
 

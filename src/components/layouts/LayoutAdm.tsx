@@ -24,7 +24,6 @@ export const LayoutAdm: FC<Props> = ({ children, title, pageDescription, imageFu
                     ((event as React.KeyboardEvent).key === 'Tab' ||
                         (event as React.KeyboardEvent).key === 'Shift')
                 ) {
-                    console.log('ss')
                     return;
                 }
 

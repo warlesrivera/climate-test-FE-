@@ -3,11 +3,11 @@ import NextLink from 'next/link';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
 
 
-interface Props { 
-    useStateDrawer:React.Dispatch<React.SetStateAction<boolean>>
+interface Props {
+    useStateDrawer: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const Navbar = ({ useStateDrawer}:Props) => {
-    
+export const Navbar = ({ useStateDrawer }: Props) => {
+
     return (
         <AppBar>
             <Toolbar>
@@ -23,7 +23,7 @@ export const Navbar = ({ useStateDrawer}:Props) => {
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     <NextLink href='/map' passHref legacyBehavior>
                         <Link>
-                            <Button /* color={ asPath === '/map' ? 'primary':'info'} */>principal Map</Button>
+                            <Button>principal Map</Button>
                         </Link>
                     </NextLink>
                     <NextLink href='/history' passHref legacyBehavior>
@@ -35,7 +35,7 @@ export const Navbar = ({ useStateDrawer}:Props) => {
                 </Box>
                 <Box flex={1} ></Box>
 
-                <Button onClick={ ()=>(useStateDrawer(true)) }>
+                <Button onClick={() => (useStateDrawer(true))}>
                     Menú
                 </Button>
             </Toolbar>

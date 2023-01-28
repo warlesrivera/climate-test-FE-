@@ -6,3 +6,4 @@ export * from './snackbar-info';
 export * from './loading-modal';
 export * from './circular-loading';
 export * from './card-empty';
+export * from './grid-skeleton';

@@ -9,7 +9,6 @@ export const baseQueryWithAuthorization = ({
     baseUrl: baseUrl,
     prepareHeaders: (extraHeaders) => {
       const accessToken = window.localStorage.getItem('accessToken');
-      console.log(accessToken);
       if (accessToken) {
         extraHeaders.set('authorization', `Bearer ${accessToken}`);
       }

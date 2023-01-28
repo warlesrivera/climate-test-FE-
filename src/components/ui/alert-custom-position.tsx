@@ -15,7 +15,7 @@ interface IAlertCustomPosition {
  * @param IAlertCustomPosition 
  * @returns JSXElement 
  */
-export const AlertCustomPosition = ({ anchorElAlert, open, placement, onClose, children, sx }: IAlertCustomPosition) => {
+export const AlertCustomPosition = ({  anchorElAlert, open, placement, onClose, children, sx }: IAlertCustomPosition) => {
 
   return (
     <Popper
@@ -25,7 +25,7 @@ export const AlertCustomPosition = ({ anchorElAlert, open, placement, onClose, c
       modifiers={[{ name: 'flip', enabled: true }]}
     >
       <Grid container >
-        <Grid xs={8}  sx={{ margin:'0px 20px'}}>
+        <Grid xs={8} sx={{ margin: '0px 20px' }}>
           <Alert
             variant='filled'
             onClose={onClose}
