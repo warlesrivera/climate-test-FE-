@@ -31,7 +31,6 @@ const UseLogin = () => {
     }, [isLoginSuccess]);
 
     useEffect(() => {
-        console.log(isLoginError, 'password');
 
         if (isLoginError) {
             setShowError(true);

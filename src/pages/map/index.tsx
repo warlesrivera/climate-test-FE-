@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import { LayoutAdm } from "../../components/layouts";
+import { useIsLoadingModal } from "../../hooks/use-is-loading-modal";
 import { useMapQuery } from "../../slices/map/map-api";
 import MapChart from "./mapChart";
 
@@ -14,6 +15,7 @@ const Map = () => {
         isFetching: isGetMapFetching,
       } = useMapQuery();
     
+      useIsLoadingModal(isGetMapLoading, false, 'loading...');
 
       
 

@@ -1,14 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import NextLink from 'next/link';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
 import { UiContext } from '../../context';
 
-export const Navbar = () => {
-    const { toggleSideMenu } = useContext( UiContext );
+
+interface Props { 
+    useStateDrawer:React.Dispatch<React.SetStateAction<boolean>>
+}
+export const Navbar = ({ useStateDrawer}:Props) => {
+    const { toggleSideMenu } = useContext(UiContext);
+    
     return (
         <AppBar>
             <Toolbar>
-                <NextLink href='/category/men' passHref legacyBehavior>
+                <NextLink href='/home' passHref legacyBehavior>
                     <Link display='flex' alignItems='center'>
                         <Typography variant='h6' color='blue'>American |</Typography>
                         <Typography sx={{ ml: 0.5 }} color='red'>humidity</Typography>
@@ -32,7 +37,7 @@ export const Navbar = () => {
                 </Box>
                 <Box flex={1} ></Box>
 
-                <Button onClick={ toggleSideMenu }>
+                <Button onClick={ ()=>(useStateDrawer(true)) }>
                     Menú
                 </Button>
             </Toolbar>

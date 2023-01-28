@@ -5,18 +5,26 @@ import HistoryIcon from '@mui/icons-material/History';
 import GroupIcon from '@mui/icons-material/Group';
 import { UiContext } from "../../context";
 import { useContext } from "react";
-export const SideMenu = () => {
+
+interface Props{
+    stateDrawer: boolean;
+    useStateDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+    toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+
+}
+export const SideMenu = ({stateDrawer,useStateDrawer,toggleDrawer}:Props) => {
 
     const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
     
     const navigateTo = ( ) => {
-        toggleSideMenu();
+        useStateDrawer(false);
     }
     return (
         <Drawer
-            open={isMenuOpen}
+            open={stateDrawer}
             anchor='right'
             sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
+            onClose={ toggleDrawer(false)}
         >
             <Box sx={{ width: 250, paddingTop: 5 }}>
 

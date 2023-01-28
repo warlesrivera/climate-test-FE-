@@ -38,3 +38,15 @@ export interface ICity {
     created_at: Date;
     updated_at: Date;
 }
+
+interface IOffsets {
+    VT: number[],
+    NH: number[],
+    MA: number[],
+    RI: number[],
+    CT: number[],
+    NJ: number[],
+    DE: number[],
+    MD: number[],
+    DC: number[]
+  };
