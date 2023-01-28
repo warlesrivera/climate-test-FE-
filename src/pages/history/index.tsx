@@ -1,10 +1,10 @@
 
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Typography, Grid,  Link, Box } from '@mui/material';
-import { DataGrid,  GridColumns } from '@mui/x-data-grid';
+import { Typography, Grid, Box } from '@mui/material';
+import { DataGrid, GridColumns } from '@mui/x-data-grid';
 
-import  LayoutAdm  from '../../components/layouts/LayoutAdm';
+import LayoutAdm from '../../components/layouts/LayoutAdm';
 import { selectUser, useHistoryMapQuery } from '../../slices';
 import { GridSkeleton } from '../../components/ui';
 
@@ -18,8 +18,6 @@ const HistoryPage = () => {
 
     const
         {
-            isSuccess: isHistorySuccess,
-            isLoading: isHistoryLoading,
             isFetching: isHistoryFetching,
             data: historyResponse,
         } = useHistoryMapQuery({ id: user.id, page: pagination });
@@ -69,13 +67,16 @@ const HistoryPage = () => {
         },
     ];
 
-    
+
 
     if (!historyResponse) {
         return (
-            <Box sx={{ px: 3, py: 3 }}>
-                <GridSkeleton rowsNumber={4} />
-            </Box>
+            <LayoutAdm title={'humidity history '} pageDescription={'register of dampness consultations in the americas '}>
+                <Box sx={{ px: 3, py: 3 }}>
+                    <GridSkeleton rowsNumber={4} />
+                </Box>
+            </LayoutAdm>
+
         );
     }
 
@@ -98,7 +99,7 @@ const HistoryPage = () => {
                             if (page > 0) {
                                 setPagination(renderPage)
                             }
-                            
+
                         }
                         }
                     />
