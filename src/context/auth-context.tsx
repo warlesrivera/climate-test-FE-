@@ -1,11 +1,10 @@
 import { createContext, useEffect, useReducer } from 'react';
 import type { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import type { IUser } from '../types/user';
 import { useDispatch } from 'react-redux';
-import { logoutUser, setToken } from '../slices';
+import { logoutUser, useLogoutUserApiMutation } from '../slices';
 import Cookies from 'js-cookie';
-
+import { useRouter } from 'next/router';
 interface State {
   isInitialized: boolean;
   isAuthenticate: boolean;
@@ -77,6 +76,11 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
   const reduxDispatch = useDispatch();
+  const router = useRouter();
+  const [
+    logoutUserApi,
+  ] = useLogoutUserApiMutation();
+
 
   useEffect(() => {
     const initialize = async (): Promise<void> => {
@@ -114,15 +118,18 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
 
   const logout = async (): Promise<void> => {
+    logoutUserApi();
     localStorage.removeItem('accessToken');
     Cookies.remove('accessToken');
     reduxDispatch(logoutUser)
     dispatch({ type: 'LOGOUT' });
   };
+
   const isAuthenticated = async (): Promise<void> => {
     const localAccessToken = window.localStorage.getItem('accessToken');
     const cookieAccessToken = Cookies.get('accessToken');
-    if (localAccessToken != null && cookieAccessToken != null) {
+    console.log(localAccessToken, cookieAccessToken)
+    if (localAccessToken && cookieAccessToken ) {
       dispatch({
         type: 'INITIALIZE',
         payload: {
@@ -144,7 +151,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     dispatch({
       type: 'BASIC_LOGIN',
     });
-
+      router.replace('/home');
   };
 
 

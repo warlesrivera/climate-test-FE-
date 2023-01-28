@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { AuthLayout } from "../components/layouts";
+import AuthLayout from '../components/layouts/AuthLayout';
 
 const Custom404 = () => {
     return (

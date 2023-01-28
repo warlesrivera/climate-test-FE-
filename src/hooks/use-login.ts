@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useLoginMutation } from "../slices/authentication/login-api";
-import { useMounted } from './use-mounted';
-import Cookies from 'js-cookie';
 import { useAuth } from "./use-auth";
+import { useMounted } from "./use-mounted";
 
 const UseLogin = () => {
     const isMounted = useMounted();
@@ -27,7 +26,7 @@ const UseLogin = () => {
         if (isLoginSuccess && LoginResponse !== undefined) {
             basicLogin(LoginResponse.token.accessToken);
             
-            if (isMounted()) {
+             if (isMounted()) {
                 router.replace('/home');
             }
         }
