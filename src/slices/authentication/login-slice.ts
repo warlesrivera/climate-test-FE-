@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
+import { IUser } from "../../types";
 import { IGenericResponse, } from "../../types/authentication";
 
 const initialState: IGenericResponse = {
@@ -9,6 +10,11 @@ const initialState: IGenericResponse = {
         tokenType: '',
         expiresAt: '',
     },
+    user: {
+        id: '',
+        name: '',
+        email: '',
+    }
 };
 export const loginSlice = createSlice({
     initialState,
@@ -18,16 +24,17 @@ export const loginSlice = createSlice({
             state.token = action.payload.token;
         },
         setToken: (state, action: PayloadAction<IGenericResponse>) => {
-           
             state.message = action.payload.message;
             state.token = action.payload.token;
-            
+            state.user = action.payload.user;
 
         },
         logout: () => initialState,
+
     },
 });
 
 export const selectToken = (state: RootState): string => state.loginUser.token.accessToken;
+export const selectUser = (state: RootState): IUser => state.loginUser.user;
 
 export const { logout, login, setToken } = loginSlice.actions;

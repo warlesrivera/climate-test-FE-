@@ -7,6 +7,7 @@ export interface IToken {
 export interface IGenericResponse{
   message: string;
   token: IToken;
+  user: IUser;
 }
 export interface IDataResponse{
   data:IGenericResponse

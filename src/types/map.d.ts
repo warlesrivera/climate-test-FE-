@@ -1,4 +1,9 @@
-export interface IGetMapListResponse {
+export interface IHistoryParams{
+    id: string;
+    page: number;
+}
+
+export interface IGetMapListResponse extends IDataResponse{
     data: IMap[]; 
   }
 export interface IMap {

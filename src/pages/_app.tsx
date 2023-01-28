@@ -7,9 +7,9 @@ import { store } from '../store';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ReduxProvider store={store}>
-      <ThemeProvider theme={lightTheme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
     </ReduxProvider>)
 }

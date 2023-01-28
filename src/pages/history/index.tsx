@@ -4,6 +4,8 @@ import { Typography, Grid, Chip, Link } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import { LayoutAdm } from '../../components/layouts';
+import { selectUser, useHistoryMapQuery } from '../../slices';
+import { useSelector } from 'react-redux';
 
 
 
@@ -31,11 +33,11 @@ const columns: GridColDef[] = [
         sortable: false,
         renderCell: (params) => {
             return (
-               <NextLink href={`/orders/${ params.row.id }`} passHref>
+                <NextLink href={`/orders/${params.row.id}`} passHref>
                     <Link underline='always'>
                         Ver orden
                     </Link>
-               </NextLink>
+                </NextLink>
             )
         }
     }
@@ -53,25 +55,39 @@ const rows = [
 
 
 const HistoryPage = () => {
-  return (
-    <LayoutAdm title={'moisture history '} pageDescription={'register of dampness consultations in the americas '}>
-        <Typography variant='h1' component='h1'>History </Typography>
+
+    const user  = useSelector(selectUser);
+    console.log(user)
+
+    const
+        {
+            isSuccess: isHistorySuccess,
+            error: historyError,
+            isError: isHistoryError,
+            isLoading: isHistoryLoading,
+            data: HistoryResponse,
+        } = useHistoryMapQuery({ id: user.id, page: 1 });
+    
+
+    return (
+        <LayoutAdm title={'moisture history '} pageDescription={'register of dampness consultations in the americas '}>
+            <Typography variant='h1' component='h1'>History </Typography>
 
 
-        <Grid container>
-            <Grid item xs={12} sx={{ height:650, width: '100%' }}>
-                <DataGrid 
-                    rows={ rows }
-                    columns={ columns }
-                    pageSize={ 10 }
-                    rowsPerPageOptions={ [10] }
-                />
+            <Grid container>
+                <Grid item xs={12} sx={{ height: 650, width: '100%' }}>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={10}
+                        rowsPerPageOptions={[10]}
+                    />
 
+                </Grid>
             </Grid>
-        </Grid>
 
-    </LayoutAdm>
-  )
+        </LayoutAdm>
+    )
 }
 
 export default HistoryPage

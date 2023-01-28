@@ -6,6 +6,7 @@ import { loginApi } from "../slices/authentication/login-api";
 import alertInfoReducer from '../slices/alert-info-slice';
 import loadingModalReducer from '../slices/loading-modal-slice';
 import { mapApi } from "../slices/map/map-api";
+import { persistReducer } from "redux-persist";
 
 
 const loginConfig = {
@@ -13,7 +14,7 @@ const loginConfig = {
   storage: sessionStorage,
 };
 export const rootReducer = combineReducers({
-  loginUser: loginSlice.reducer,
+  loginUser:persistReducer(loginConfig, loginSlice.reducer),
   alertInfo: alertInfoReducer,
   loadingModal: loadingModalReducer,
   
