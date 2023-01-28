@@ -1,4 +1,4 @@
-import { Alert, Popper, PopperPlacementType, Typography, SxProps, Theme, Grid } from '@mui/material';
+import { Alert, Popper, PopperPlacementType,  SxProps, Theme, Grid } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
 interface IAlertCustomPosition {

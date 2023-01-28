@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardMedia, Grid, IconButton, Typography } from '@mui/material';
+import { Card,  CardMedia, Grid, Typography } from '@mui/material';
 import { NextPage } from 'next';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import UseLogin from '../hooks/use-login';
